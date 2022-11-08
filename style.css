@@ -28,8 +28,10 @@
     --sidebar-content-image-size: 25px;
 
     /* topbar sizing */
+    --topbar-horizontal-padding: 32px;
     --topbar-button-width: 90px;
     --topbar-gap: 8px;
+    --hamburger-image-size: 32px;
 }
 
 .topbar-hamburger.container {
@@ -74,7 +76,7 @@ button {
     grid-template-rows: 0fr 3fr;
     grid-row: 1;
     grid-column: 2;
-    padding: 2px 32px;
+    padding: 2px var(--topbar-horizontal-padding);
     padding-top: 16px;
     background: var(--topbar-background);
     gap: 8px;
@@ -220,4 +222,63 @@ button {
     background-color: var(--button-color);
     color: white;
     width: var(--topbar-button-width);
+}
+
+@media only screen and (max-width: 800px) {
+    :root {
+        --topbar-horizontal-padding: 16px;
+    }
+
+    body {
+        grid-template-columns: 0fr 1fr;
+        grid-template-rows: var(--topbar-height) 1fr;
+    }
+
+    .sidebar.container {
+        display: none;
+    }
+
+    .topbar-hamburger.container {
+        display: grid;
+        position: relative;
+        align-items: center;
+    }
+
+    .topbar-hamburger.container::before {
+        display: block;
+        content: "";
+        position: absolute;
+        background-color: var(--sidebar-background);
+        width: var(--topbar-horizontal-padding);
+        height: calc(8px + var(--hamburger-image-size));
+        left: calc(-1 * var(--topbar-horizontal-padding));
+    }
+
+    .topbar-hamburger.container::after {
+        display: block;
+        content: "";
+        position: absolute;
+        background-color: var(--sidebar-background);
+        width: calc(8px + var(--hamburger-image-size));
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        height: calc(8px + var(--hamburger-image-size));
+        left: -4px;
+    }
+
+    .topbar-hamburger.container > img {
+        position: relative;
+        right: 8px;
+        width: var(--hamburger-image-size);
+        z-index: 1;
+    }
+
+    .topbar-info.container {
+        grid-template-columns: 0fr 1fr 0fr;
+        grid-auto-flow: column;
+    }
+
+    .topbar-info-information.container {
+        padding-left: 24px;
+    }
 }
