@@ -30,11 +30,15 @@
     /* topbar sizing */
     --topbar-horizontal-padding: 32px;
     --topbar-button-width: 90px;
-    --topbar-gap: 8px;
+    --topbar-gap: 7px;
     --hamburger-image-size: 32px;
 }
 
 .topbar-hamburger.container {
+    display: none;
+}
+
+.mobile {
     display: none;
 }
 
@@ -151,6 +155,7 @@ button {
     padding-left: 1em;
     padding-right: 1em;
     max-width: 30rem;
+    min-width: 6rem;
     border-radius: 1000px;
     border: none;
     background-color: var(--content-background);
@@ -213,7 +218,10 @@ button {
 }
 
 .topbar-info-buttons.container {
+    position: relative;
+    right: -14px;
     grid-template-columns: repeat(3, var(--topbar-button-width));
+    grid-auto-flow: column;
     gap: 14px;
     align-items: center;
 }
@@ -224,9 +232,17 @@ button {
     width: var(--topbar-button-width);
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 810px) {
     :root {
         --topbar-horizontal-padding: 16px;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
     }
 
     body {
@@ -269,6 +285,7 @@ button {
     .topbar-hamburger.container > img {
         position: relative;
         right: 8px;
+        filter: invert(100%);
         width: var(--hamburger-image-size);
         z-index: 1;
     }
@@ -276,9 +293,12 @@ button {
     .topbar-info.container {
         grid-template-columns: 0fr 1fr 0fr;
         grid-auto-flow: column;
+        gap: 20px;
     }
 
-    .topbar-info-information.container {
-        padding-left: 24px;
+    .topbar-info-buttons.container {
+        right: 0;
+        grid-template-columns: repeat(3, 0) var(--topbar-button-width);
+        gap: 0;
     }
 }
