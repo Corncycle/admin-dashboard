@@ -11,6 +11,7 @@
     --topbar-background: #f9fafb;
     --content-background: #e4e4e7;
     --accent-color: #4B81AB;
+    --secondary-text-color: rgb(109, 109, 109);
 
     /* misc global sizing */
     --profile-picture-small-size: 40px;
@@ -44,11 +45,11 @@ button,
 }
 
 .sidebar-title-slot.container {
-    cursor: pointer;
+    cursor: default;
 }
 
 .bottom-shadow {
-    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.062);
+    box-shadow: 0 2px 4px 2px rgba(124, 124, 124, 0.267);
     z-index: 1;
 }
 
@@ -65,6 +66,7 @@ body, .container {
 }
 
 body {
+    position: relative;
     min-height: 100vh;
     grid-template-columns: var(--sidebar-width) 1fr;
     grid-template-rows: var(--topbar-height) 1fr;
@@ -72,6 +74,13 @@ body {
 
 h1, h2, h3, h4 {
     font-weight: 700;
+}
+
+hr {
+    width: 100%;
+    border-style: none;
+    border-top: 1px solid var(--secondary-text-color);
+    opacity: 50%;
 }
 
 button {
@@ -92,10 +101,13 @@ button {
     grid-row: 1 / 3;
     grid-column: 1;
     background: var(--sidebar-background);
-    z-index: 2;
+    z-index: 4;
 }
 
 .topbar.container {
+    position: sticky;
+    top: 0;
+    z-index: 3;
     grid-template-rows: 0fr 3fr;
     grid-row: 1;
     grid-column: 2;
@@ -110,6 +122,8 @@ button {
     grid-row: 2;
     grid-column: 2;
     gap: 20px;
+    grid-template-columns: 1fr 280px;
+    padding: 20px;
 }
 
 .sidebar-content.container {
@@ -257,11 +271,6 @@ button {
     width: var(--topbar-button-width);
 }
 
-.content.container {
-    grid-template-columns: 1fr 200px;
-    padding: 20px;
-}
-
 .main-content.container {
     grid-template-rows: 3rem 1fr;
 }
@@ -303,7 +312,7 @@ button {
 }
 
 .card-body {
-    color: rgb(109, 109, 109);
+    color: var(--secondary-text-color);
     font-size: 0.95rem;
 }
 
@@ -327,11 +336,38 @@ button {
 
 .side-content.container {
     grid-auto-rows: 0fr;
+    gap: 20px;
 }
 
 .side-content-announcements.container,
 .side-content-trending.container {
     grid-template-rows: 3rem 1fr;
+}
+
+.side-content-announcements-content.container,
+.side-content-trending-content.container {
+    background: white;
+    padding: 30px;
+    border-radius: var(--card-corner-radius);
+}
+.side-content-announcements-content.container hr,
+.side-content-trending-content.container hr {
+    margin: 12px 0;
+}
+
+.single-announcement.container {
+    gap: 4px;
+    padding: 4px;
+}
+
+.single-announcement-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.single-announcement-body {
+    font-size: 0.7rem;
+    color: var(--secondary-text-color);
 }
 
 @media only screen and (max-width: 810px) {
